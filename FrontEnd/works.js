@@ -16,7 +16,9 @@ for (let i = 0; i < works.length; i++) {
     const titleElement = document.createElement("p");
     titleElement.innerText = article.title;
 
+    // On rattache la balise article dans la section gallery
     sectionGallery.appendChild(projetElement);
+    // On rattache l'image et la description à la balise elementProjet (article)
     projetElement.appendChild(imageElement);
     projetElement.appendChild(titleElement);
 

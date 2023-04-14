@@ -135,19 +135,52 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+.button-filtre {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	height: 100px;
+}
+
+button {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	color: #1D6154;
+	background-color: white;
+	margin : 5px ;
+	padding: 10px 15px 10px 15px;
+	width: auto;
+	height: 37px;
+	text-align: center;
+	border-radius: 60px;
+	border: solid 1px;
+	border-color: #1D6154;
+	display: flex;
+	align-items: center;
+}
+
+button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
 }
+
 #contact > * {
 	text-align: center;
-
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -161,9 +194,11 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
