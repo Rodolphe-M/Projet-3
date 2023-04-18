@@ -1,3 +1,4 @@
+// Stock l'élément login-form dans la constante loginForm
 const loginForm = document.getElementById("login-form");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
