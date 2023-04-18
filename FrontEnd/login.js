@@ -3,8 +3,8 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const submitButton = document.querySelector('#login-form input[type="submit"]');
 
-loginForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
+loginForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
     // Vérification que les champs ne sont pas vides
     if (emailInput.value.trim() === "" || passwordInput.value.trim() === "") {
@@ -30,8 +30,8 @@ loginForm.addEventListener('submit', async function (e) {
         alert("Authentification réussie !");
 
         // Stockage de l'ID et du token de l'utilisateur dans le localStorage
-        // localStorage.setItem('user_id', data.user_id);
-        // localStorage.setItem('user_token', data.user_token);
+         localStorage.setItem('userId', data.userId);
+         localStorage.setItem('token', data.token);
 
         // Redirection vers index.html
         window.location.href = "index.html";
