@@ -65,7 +65,7 @@ boutonFiltrerHotels.addEventListener("click", function() {
 // bouton filtre appartements
 const boutonTous = document.querySelector("#btn-tous");
 boutonTous.addEventListener("click", function() {
-    const afficherTous = works.filter((work) => {
+    const afficherTous = works.filter(() => {
         return genererProjets
     })
     // Regénération de la page avec les appartements uniquement  
