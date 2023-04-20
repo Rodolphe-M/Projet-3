@@ -172,7 +172,7 @@ button:hover {
 
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 
 #contact > * {
@@ -281,4 +281,71 @@ margin: auto;
 	background-color: white;
 	border-radius: 10px;
 	border: solid 1px black;
+}
+
+/* ADMIN MODE */
+
+#admin-top {
+	display: flex;
+	justify-content: center;
+	background-color: black;
+	margin-left: calc(-1 * ((100vw - 100%) / 2));
+	padding: 0;
+	width: 100vw;
+}
+
+#section-top {
+	margin: 0;
+	max-width: none;
+	width: 100%;
+}
+
+#btn-edition {
+	font: inherit;
+	color: white;
+	border: none;
+	background-color: black;
+}
+
+#icone-edition {
+	margin-right: 5px;
+}
+
+#btn-publier {
+	font: inherit;
+	color: black;
+}
+
+#btn-publier:hover {
+	background-color: white;
+	color:#B1663C;
+}
+
+.btn-modifier {
+	font: inherit;
+	color: black;
+	border: none;
+	background-color: white;
+	border-radius: 0;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+.btn-modifier:hover {
+	background-color: white;
+	color: #B1663C;
+}
+
+#btn-modifier-image {
+	margin-left: 57px;
+}
+
+.lien:hover {
+	text-decoration: none;
+	color:#B1663C;
+}
+
+.lien {
+	text-decoration: none;
+	color: black;
 }
