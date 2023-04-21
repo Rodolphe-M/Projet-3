@@ -45,7 +45,10 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="projets">
+			<h2>Mes Projets</h2>
+			<button class="btn-modifier" id="btn-modifier-projets"><i id="icone-edition" class="fa-regular fa-pen-to-square"></i><a href="#modal-1" class="js-modal">Modifier</a></button>
+		</div>
 		<div class="button-filtre">
 			<button id="btn-tous">Tous</button>
 			<button id="btn-objets">Objets</button>
@@ -69,7 +72,7 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
-	<a href="#modal-1" class="js-modal">Modifier</a>
+	
 	<aside id="modal-1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display:none;">
 		<div class="modal-wrapper js-modal-stop">
 			<button class="js-modal-close">Close</button>

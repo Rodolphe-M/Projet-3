@@ -349,3 +349,24 @@ margin: auto;
 	text-decoration: none;
 	color: black;
 }
+
+.projets {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#btn-modifier-projets {
+	margin-left: 20px;
+	padding-bottom: 5px;
+}
+
+.js-modal {
+	text-decoration: none;
+	color: black;
+}
+
+.js-modal:hover {
+	text-decoration: none;
+	color:#B1663C;
+}
