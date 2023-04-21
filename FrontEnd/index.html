@@ -75,11 +75,22 @@
 	
 	<aside id="modal-1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display:none;">
 		<div class="modal-wrapper js-modal-stop">
-			<button class="js-modal-close">Close</button>
-			<h3 id="title-modal">Galerie photo</h3>
+			<div class="modal-top">
+				<button class="js-modal-close"><i id="cross-close" class="fa-sharp fa-solid fa-xmark"></i></button>
+			</div>
+			<div class="modal-title">
+				<h3 id="title-modal">Galerie photo</h3>
+			</div>
+			<div class="modal-gallery">
+			</div>
+			<div class="modal-footer">
+				<input type="submit" value="Ajouter une photo">
+				<a href="#">Supprimer la galerie</a>
+			</div>
 		</div>
 	</aside>
 	<script src="modale.js"></script>
+
 </main>
 
 <footer>

@@ -104,3 +104,32 @@ function pageAdmin() {
   // Appel de la fonction
   pageAdmin();
 
+  // Fonction qui génère les projets
+function genererProjetsModal(works) {
+
+    document.querySelector(".modal-gallery").innerHTML = "";
+    
+    for (let i = 0; i < works.length; i++) {
+        const articleModal = works[i];
+        //Récupération de l'élément du DOM qui accueillera les fiches
+        const sectionGalleryModal = document.querySelector(".modal-gallery");
+        // Création d’une balise dédiée à un projet
+        const projetElementModal = document.createElement("article");
+        //Création des balises
+        const imageElementModal = document.createElement("img");
+        imageElementModal.src = articleModal.imageUrl;
+        const titleElementModal = document.createElement("p");
+        titleElementModal.innerText = articleModal.title = "éditer";
+
+        // On rattache la balise article dans la section gallery
+        sectionGalleryModal.appendChild(projetElementModal);
+        // On rattache l'image et la description à la balise elementProjet (article)
+        projetElementModal.appendChild(imageElementModal);
+        projetElementModal.appendChild(titleElementModal);
+
+    }
+}
+
+// Premier affichage des projets
+genererProjetsModal(works);
+
