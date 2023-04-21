@@ -72,5 +72,35 @@ boutonTous.addEventListener("click", function() {
     genererProjets(afficherTous);
 });
 
+// Affichage mode ADMIN
 
+// Selection des éléments à masquer
+const hiddenElements = document.querySelectorAll('.hidden');
+// Application de la propriété display: none aux éléments
+    hiddenElements.forEach(element => {
+    element.style.display = 'none';
+})
+
+// Affichage des elements du dom en mode admin
+function pageAdmin() {
+    // Vérification de la présence du token et de l'userId
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    // Si présence token et id alors...
+    if (userId && token) {
+      // On selectionne les classes hidden et not-hidden  
+      const elementsHidden = document.querySelectorAll('.hidden');
+      const elementsNotHidden = document.querySelectorAll('.not-hidden');
+      // On fait apparaitre les .hidden
+      elementsHidden.forEach(element => {
+        element.style.display = 'block';
+      });
+      // On masque les éléments .not-hidden
+      elementsNotHidden.forEach(element => {
+        element.style.display = 'none';
+      });
+    }
+  }
+  // Appel de la fonction
+  pageAdmin();
 
