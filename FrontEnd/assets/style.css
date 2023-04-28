@@ -333,10 +333,6 @@ margin: auto;
 	margin-bottom: 50px;;
 }
 
-.modal-gallery {
-	height: 70%;
-}
-
 .modal-footer {
 	display: flex;
 	flex-direction: column;
@@ -391,6 +387,7 @@ margin: auto;
 	justify-content: center;
 	flex-direction: column;
 	height: 120px;
+	position: relative;
 }
 
 .modal-gallery img {
@@ -398,6 +395,7 @@ margin: auto;
 	height: 104.08px;
 	margin-bottom: 5px;
 	margin-top: 10px;
+	position:relative;
 }
 
 
@@ -435,10 +433,6 @@ margin: auto;
 	font-weight: 400;
 }
 
-.modal-gallery {
-	height: 70%;
-}
-
 .modal-footer {
 	display: flex;
 	flex-direction: column;
@@ -477,31 +471,37 @@ margin: auto;
 	color: red;
 }
 
-.modal-gallery {
+.trash-button::before {
+	color: white;
+	font-size: 10px;
+	position: absolute;
+	margin: auto;
+}
+
+#btn-delete {
 	display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	gap: 8px;
-	width: 430px;
-	height: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.modal-gallery article {
-	display:flex;
+	align-items: center;
 	justify-content: center;
-	flex-direction: column;
-	height: 120px;
+	padding: 2px 3px 2px 3px;
+	height:fit-content;
+	position: absolute;
+	top: 5px;
+	left: 45px;
+	border-radius: 2px;
+	background-color: #444444;
+	border: none;
+	color: white;
+	display: none;
 }
 
-.modal-gallery img {
-	width: 78.12px;
-	height: 104.08px;
-	margin-bottom: 5px;
-	margin-top: 10px;
+#btn-delete:hover {
+	background: #B1663C;
+	
 }
 
+.modal-gallery article:hover #btn-delete {
+	display: block;
+}
 
 .upload-file {
 	width: 420px;
@@ -570,7 +570,7 @@ margin: auto;
 	color: #CBD6DC;
 }
 
-#btn-submit-input {
+#btn-submit-photo {
 	background-color: #CBD6DC;
 	color: #306685;
 	font-size: 14px;
@@ -578,7 +578,7 @@ margin: auto;
 	width: 173px;
 }
 
-#btn-submit-input:hover {
+#btn-submit-photo:hover {
 	background-color: #306685;
 	color: #CBD6DC;
 }
@@ -666,3 +666,6 @@ margin: auto;
 	margin-top: 30px;
 }
 
+#preview-image {
+	position:absolute;
+}
