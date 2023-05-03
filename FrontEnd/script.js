@@ -133,6 +133,41 @@ function genererProjetsModal(works) {
         const titleElementModal = document.createElement("p");
         titleElementModal.innerText = articleModal.title = "éditer";
 
+        // Ajout de l'écouteur d'événement sur le bouton trash-button
+        trashButtonModal.addEventListener("click", function () {
+            const workId = articleModal.id;
+            console.log(workId);
+            const token = localStorage.getItem('token');
+            console.log(token);
+            // Demander confirmation de la suppression
+            const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
+            if (confirmation) {
+                // Effectuer la requête DELETE pour supprimer le projet
+                fetch(`http://localhost:5678/api/works/${workId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erreur lors de la suppression du projet');
+                        }
+                        // Si la suppression a réussi, actualiser l'affichage des works
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Actualiser l'affichage des works sans recharger la page
+                        // Par exemple, en appelant une fonction pour regénérer la galerie de projets
+                        genererProjetsModal(data.works);
+                    })
+            }
+        });
+
+        // On rattache la balise article dans la section gallery
+        sectionGalleryModal.appendChild(projetElementModal);
+        // On rattache l'image et la description à la balise elementProjet (article
+
         // On rattache la balise article dans la section gallery
         sectionGalleryModal.appendChild(projetElementModal);
         // On rattache l'image et la description à la balise elementProjet (article)
@@ -141,14 +176,10 @@ function genererProjetsModal(works) {
         // Ajout du bouton Trash
         projetElementModal.appendChild(trashButtonModal);
     }
-}
-
-
-
+};
 
 // Premier affichage des projets
 genererProjetsModal(works);
-
 
 
 // Function pour switcher d'une modale à l'autre
@@ -189,10 +220,6 @@ logoutButton.addEventListener("click", function () {
     location.reload();
 });
 
-// Suppression
-
-
-
 // Ajout projet sur l'API
 
 function addWorks() {
@@ -209,7 +236,7 @@ function addWorks() {
         formData.append('category', parseInt(categories.options[categories.selectedIndex].id)); // Convertir l'ID en entier
         formData.append('image', image.files[0]);
 
-        console.log( formData);
+        console.log(formData);
 
         const token = localStorage.getItem('token');
         console.log(token);
@@ -222,13 +249,13 @@ function addWorks() {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 };
 
@@ -239,70 +266,4 @@ genererProjetsModal(works);
 
 
 
-
-
-
-
-/*
-//Ajout de projet depuis la modale vers l'API
-
-const photoInput = document.getElementById("input-file");
-const titreInput = document.getElementById("titre");
-const categoriesInput = document.getElementById("categories");
-const submitButtonPhoto = document.getElementById("btn-submit-photo")
-const submitButtonForm = document.getElementById("btn-submit-file");
-
-submitButtonPhoto.addEventListener("click", async function (e) {
-    photoInput.click();
-    e.preventDefault();
-
-    const previewImage = document.getElementById("preview-image");
-
-    photoInput.addEventListener("change", function () {
-        const selectedFile = photoInput.files[0];
-        const objectURL = URL.createObjectURL(selectedFile);
-
-        if (previewImage) {
-            previewImage.src = objectURL;
-        }
-
-    })
-
-    submitButtonForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        const newProjectImage = document.getElementById("input-file").file[0];
-        const newProjectTitle = document.getElementById("titre").value;
-        const newProjectCategory = document.getElementById("categories").value;
-
-        const formData = new FormData();
-        formData.append("imageUrl", newProjectImage);
-        formData.append("titre", newProjectTitle);
-        formData.append("categoryId", newProjectCategory);
-
-        for (const pair of formData.entries()) {
-            console.log(pair[0], pair[1]);
-        }
-        const userId = localStorage.getItem('userId');
-        const token = localStorage.getItem('token');
-        const tokenId = userId + token;
-
-
-            const reponse = await fetch("http://localhost:5678/api/works", {
-                 method: "POST",
-                 body: formData,
-                 headers: {
-                     "Content-Type": "multipart/form-data",
-                     "accept": "application.json",
-                     "Authorizat ion": `Bearer ${tokenId}`
-                 }
-             })
-    })
-});
-
-// selecteur id
-        const select = document.querySelector('#categories');
-        const selectedId = select.options[select.selectedIndex].getAttribute('id');
-        console.log(selectedId);
-*/
 
