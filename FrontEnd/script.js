@@ -220,29 +220,33 @@ function addWorks() {
     const btnSubmitPhoto = document.querySelector('#btn-submit-photo');
     const inputFile = document.querySelector('#input-file');
 
+    // Ajout event listener au clic sur le bouton ajout photo cela active l'input file
     btnSubmitPhoto.addEventListener('click', (e) => {
         e.preventDefault();
         inputFile.click();
     });
 
+    // Changement du comportement par default du input photo (pas de submit form)
     inputFile.addEventListener('change', (event) => {
         event.preventDefault();
     });
 
+    // Au clic sur le bouton Envoyer soumet le formulaire
     btnSubmitFile.addEventListener('click', (event) => {
         event.preventDefault();
         form.querySelector('#input-file');
 
+        // Set l'objet formData
         const formData = new FormData();
         formData.append('title', title.value);
         formData.append('category', parseInt(categories.options[categories.selectedIndex].id)); // Convertir l'ID en entier
         formData.append('image', image.files[0]);
 
         console.log(formData);
-
+        // Set le token
         const token = localStorage.getItem('token');
         console.log(token);
-
+        // Envoi du projet avec methode POST à l'api
         const response = fetch("http://localhost:5678/api/works", {
             method: "POST",
             body: formData,
@@ -251,13 +255,28 @@ function addWorks() {
                 "Authorization": `Bearer ${token}`,
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .then(response => {
+            if (response.status === 201) {
+                alert("Le projet a été ajouté avec succès !");
+                // afficher la fenêtre de succès ici
+            } else if (response.status === 400) {
+                alert("Requête incorrecte !");
+                // afficher la fenêtre d'erreur ici
+            } else if (response.status === 401) {
+                alert("Non autorisé !");
+                // afficher la fenêtre d'erreur ici
+            } else if (response.status === 500) {
+                alert("Comportement inattendu !");
+                // afficher la fenêtre d'erreur ici
+            } else {
+                alert("Une erreur s'est produite !");
+                // afficher la fenêtre d'erreur ici
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // afficher la fenêtre d'erreur ici
+        });
     });
 };
 
