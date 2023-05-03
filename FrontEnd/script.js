@@ -128,11 +128,12 @@ async function genererProjetsModal(works) {
         // Création d'une classe ="trash-button"
         trashButtonModal.classList.add("trash-button");
         trashButtonModal.id = "btn-delete";
-
         //Modification <p>
         const titleElementModal = document.createElement("p");
         titleElementModal.innerText = articleModal.title = "éditer";
 
+
+ // Suppression projet       
         // Ajout de l'écouteur d'événement sur le bouton trash-button
         trashButtonModal.addEventListener("click", function () {
             const workId = articleModal.id;
@@ -231,6 +232,48 @@ function addWorks() {
         event.preventDefault();
     });
 
+    /*
+ // Affiche de l'image avec l'objet fileReader
+    inputFile.addEventListener('change', previewFile);
+
+    function previewFile() {
+
+        const fileExtensionRegex = /\.(jpe?g|png)$/i;
+
+        if(this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
+            return;
+        }
+        
+        const file = this.files[0];
+        const fileReader = new FileReader();
+
+        fileReader.readAsDataURL(file);
+
+        fileReader.addEventListener('load', (event) =>
+        displayImage(event, file));
+
+    }
+
+    function displayImage(event, file) {
+
+        const figureElement = document.createElement('figure');
+        figureElement.id = "image-selected";
+
+        const imageElement = document.createElement('img');
+        imageElement.src = event.target.result;
+
+        const figcaptionElement = document.createElement('figcaption');
+        figcaptionElement.textContent = `Fichier selectionné : ${file.name}`;
+
+        figureElement.appendChild(imageElement);
+        figureElement.appendChild(figcaptionElement);
+
+        document.body.querySelector('#image-preview').appendChild(figureElement);
+
+
+    }
+*/
+
     // Au clic sur le bouton Envoyer soumet le formulaire
     btnSubmitFile.addEventListener('click', (event) => {
         event.preventDefault();
@@ -272,10 +315,6 @@ function addWorks() {
                 alert("Une erreur s'est produite !");
                 // afficher la fenêtre d'erreur ici
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // afficher la fenêtre d'erreur ici
         });
     });
 };

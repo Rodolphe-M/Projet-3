@@ -535,6 +535,11 @@ margin: auto;
 	color: #444444;
 }
 
+#image-preview img {
+	height: 193px;
+	width: 129px;
+}
+
 .card-modal {
 	display: flex;
 	align-items: center;
