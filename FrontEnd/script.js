@@ -106,7 +106,7 @@ function pageAdmin() {
 pageAdmin();
 
 // Fonction qui génère les projets
-function genererProjetsModal(works) {
+async function genererProjetsModal(works) {
 
     document.querySelector(".modal-gallery").innerHTML = "";
 
@@ -142,31 +142,24 @@ function genererProjetsModal(works) {
             // Demander confirmation de la suppression
             const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
             if (confirmation) {
-                // Effectuer la requête DELETE pour supprimer le projet
-                fetch(`http://localhost:5678/api/works/${workId}`, {
+                const response = fetch(`http://localhost:5678/api/works/${workId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erreur lors de la suppression du projet');
-                        }
-                        // Si la suppression a réussi, actualiser l'affichage des works
-                        return response.json();
-                    })
-                    .then(data => {
-                        // Actualiser l'affichage des works sans recharger la page
-                        // Par exemple, en appelant une fonction pour regénérer la galerie de projets
-                        genererProjetsModal(data.works);
-                    })
-            }
-        });
+                });
 
-        // On rattache la balise article dans la section gallery
-        sectionGalleryModal.appendChild(projetElementModal);
-        // On rattache l'image et la description à la balise elementProjet (article
+                if (response.status === 200) {
+                    console.log("Projet supprimé !");
+                } else if (response.status === 401) {
+                    console.error("Non autorisé !");
+                } else if (response.status === 500) {
+                    console.error("Comportement inattendu !");
+                } else {
+                    console.error("Une erreur s'est produite !");
+                }
+            }
+        })
 
         // On rattache la balise article dans la section gallery
         sectionGalleryModal.appendChild(projetElementModal);
@@ -177,9 +170,6 @@ function genererProjetsModal(works) {
         projetElementModal.appendChild(trashButtonModal);
     }
 };
-
-// Premier affichage des projets
-genererProjetsModal(works);
 
 
 // Function pour switcher d'une modale à l'autre
@@ -221,15 +211,27 @@ logoutButton.addEventListener("click", function () {
 });
 
 // Ajout projet sur l'API
-
 function addWorks() {
     const form = document.querySelector('#file-form');
     const image = document.getElementById('input-file');
     const title = document.querySelector('#titre');
     const categories = document.querySelector('#categories');
+    const btnSubmitFile = document.querySelector('#btn-submit-file');
+    const btnSubmitPhoto = document.querySelector('#btn-submit-photo');
+    const inputFile = document.querySelector('#input-file');
 
-    form.addEventListener('submit', (event) => {
+    btnSubmitPhoto.addEventListener('click', (e) => {
+        e.preventDefault();
+        inputFile.click();
+    });
+
+    inputFile.addEventListener('change', (event) => {
         event.preventDefault();
+    });
+
+    btnSubmitFile.addEventListener('click', (event) => {
+        event.preventDefault();
+        form.querySelector('#input-file');
 
         const formData = new FormData();
         formData.append('title', title.value);
@@ -263,6 +265,7 @@ function addWorks() {
 addWorks();
 
 genererProjetsModal(works);
+
 
 
 

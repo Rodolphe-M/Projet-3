@@ -26,11 +26,11 @@
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li>projets</li>
-				<li>contact</li>
+				<li><a href="#portfolio">projets</a></li>
+				<li><a href="#contact">contact</a></li>
 				<li><a href="login.html" class="lien not-hidden">login</a></li>
 				<li><a href="index.html" class="lien hidden" id="logout">logout</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li><a href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 			</ul>
 		</nav>
 	</header>
@@ -116,10 +116,9 @@
 				<div class="card-modal">
 					<form action="/submit-form" method="POST" id="file-form" enctype="multipart/form-data">
 						<div class="upload-file">
-							<img id="preview-image" src="#" alt="Preview Image">
 							<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
 							<button id="btn-submit-photo">+ Ajouter photo</button>
-							<input type="file" id="input-file" max-size="4000" accept=".png, .jpeg .png" required>
+							<input type="file" id="input-file" max-size="4000" accept=".png, .jpeg .png" style="display:none" required>
 							<p>jpn, png : 4mo</p>
 						</div>
 						<label for="titre">Titre</label>
