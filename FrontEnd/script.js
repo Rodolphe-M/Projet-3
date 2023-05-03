@@ -143,15 +143,17 @@ async function genererProjetsModal(works) {
             // Demander confirmation de la suppression
             const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
             if (confirmation) {
-                const response = fetch(`http://localhost:5678/api/works/${workId}`, {
+                 fetch(`http://localhost:5678/api/works/${workId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
-                });
+                }).then(response => {
 
-                if (response.status === 200) {
-                    console.log("Projet supprimé !");
+                if (response.status === 204) {
+                    const index = works.findIndex(work => work.id === workId);
+                    works.splice(index, 1);
+                    genererProjetsModal(works);
                 } else if (response.status === 401) {
                     console.error("Non autorisé !");
                 } else if (response.status === 500) {
@@ -159,8 +161,9 @@ async function genererProjetsModal(works) {
                 } else {
                     console.error("Une erreur s'est produite !");
                 }
-            }
-        })
+            })
+        }
+    });
 
         // On rattache la balise article dans la section gallery
         sectionGalleryModal.appendChild(projetElementModal);
@@ -232,7 +235,7 @@ function addWorks() {
         event.preventDefault();
     });
 
-    /*
+    
  // Affiche de l'image avec l'objet fileReader
     inputFile.addEventListener('change', previewFile);
 
@@ -272,7 +275,7 @@ function addWorks() {
 
 
     }
-*/
+
 
     // Au clic sur le bouton Envoyer soumet le formulaire
     btnSubmitFile.addEventListener('click', (event) => {
