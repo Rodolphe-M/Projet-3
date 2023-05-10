@@ -16,12 +16,12 @@
 </head>
 
 <body>
-	<section id="section-top" class="hidden">
+	<div id="section-top" class="hidden">
 		<div id="admin-top">
-			<button id="btn-edition"><i id="icone-edition" class="fa-regular fa-pen-to-square"></i>Mode édition</button>
+			<button id="btn-edition"><i class="fa-regular fa-pen-to-square icone-edition"></i>Mode édition</button>
 			<button id="btn-publier">publier les changements</button>
 		</div>
-	</section>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -35,15 +35,15 @@
 		</nav>
 	</header>
 	<main>
-		<section id="introduction">
+		<div id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<button class="btn-modifier hidden" id="btn-modifier-image"><i id="icone-edition"
-						class="fa-regular fa-pen-to-square"></i>Modifier</button>
+				<button class="btn-modifier hidden" id="btn-modifier-image"><i
+						class="fa-regular fa-pen-to-square icone-edition"></i>Modifier</button>
 			</figure>
 			<article>
-				<button class="btn-modifier hidden"><i id="icone-edition"
-						class="fa-regular fa-pen-to-square"></i>Modifier</button>
+				<button class="btn-modifier hidden"><i
+						class="fa-regular fa-pen-to-square icone-edition"></i>Modifier</button>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
@@ -53,7 +53,7 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
-		</section>
+		</div>
 		<section id="portfolio">
 			<div class="projets">
 				<h2>Mes Projets</h2>
@@ -84,64 +84,67 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
-	</main>
 
-	<aside id="modal-1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal"
-		style="display:none;">
-		<div class="modal-wrapper js-modal-stop">
-			<div class="modal-top">
-				<button class="js-modal-return hidden-modal" style="visibility:hidden">
-					<i id="arrow-return" class="fa-sharp fa-solid fa-arrow-left"></i>
-				</button>
-				<button class="js-modal-close">
-					<i id="cross-close" class="fa-sharp fa-solid fa-xmark"></i>
-				</button>
-			</div>
-			<div class="modal-one not-hidden-modal">
-				<div class="modal-title">
-					<h3 class="title-modal">Galerie photo</h3>
-				</div>
-				<div class="modal-gallery">
-				</div>
-				<div class="modal-footer">
-					<input id="btn-add-work" type="submit" value="Ajouter une photo"><br>
-					<a href="#">Supprimer la galerie</a>
-				</div>
-			</div>
 
-			<div class="modal-two hidden-modal" style="display:none">
-				<div class="modal-title">
-					<h3 class="title-modal">Ajout photo</h3>
-				</div>
-				<div class="card-modal">
-					<form action="/submit-form" method="POST" id="file-form" enctype="multipart/form-data">
-						<div class="upload-file" id="image-preview">
-							<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
-							<button id="btn-submit-photo">+ Ajouter photo</button>
-							<input type="file" id="input-file" max-size="4000" accept=".png, .jpeg .png" style="display:none" required>
-							<p>jpn, png : 4mo</p>
+		<aside>
+			<div id="modal-1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal"
+				style="display:none;">
+				<div class="modal-wrapper js-modal-stop">
+					<div class="modal-top">
+						<button class="js-modal-return hidden-modal" style="visibility:hidden">
+							<i id="arrow-return" class="fa-sharp fa-solid fa-arrow-left"></i>
+						</button>
+						<button class="js-modal-close">
+							<i id="cross-close" class="fa-sharp fa-solid fa-xmark"></i>
+						</button>
+					</div>
+					<div class="modal-one not-hidden-modal">
+						<div class="modal-title" id="title-modal">
+							<h3>Galerie photo</h3>
 						</div>
-						<div class="ajout-valide" style="display:none">
-							<p>Le projet a été ajouté avec succès !</p>
+						<div class="modal-gallery">
 						</div>
-						<label for="titre">Titre</label>
-						<input type="text" name="titre" id="titre" required>
-						<label for="categories">Catégories</label>
-						<select name="categories" id="categories" required>
-							<option id="0" value="" selected disabled></option>
-							<option id="1" value="Objets">Objets</option>
-							<option id="2" value="Appartements">Appartements</option>
-							<option id="3" value="Hotels & restaurants">Hotels & restaurants</option>
-						</select>
-						<div class="footer-modal-two">
-							<input id="btn-submit-file" type="submit" value="Valider">
+						<div class="modal-footer">
+							<input id="btn-add-work" type="submit" value="Ajouter une photo"><br>
+							<a href="#">Supprimer la galerie</a>
 						</div>
-					</form>
+					</div>
+
+					<div class="modal-two hidden-modal" style="display:none">
+						<div class="modal-title">
+							<h3 class="title-modal">Ajout photo</h3>
+						</div>
+						<div class="card-modal">
+							<form action="/submit-form" method="POST" id="file-form" enctype="multipart/form-data">
+								<div class="upload-file" id="image-preview">
+									<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
+									<button id="btn-submit-photo">+ Ajouter photo</button>
+									<input type="file" id="input-file" accept=".png, .jpg, .jpeg" style="display:none"
+										required>
+									<p>jpn, png : 4mo</p>
+								</div>
+								<div class="ajout-valide" style="display:none">
+									<p>Le projet a été ajouté avec succès !</p>
+								</div>
+								<label for="titre">Titre</label>
+								<input type="text" name="titre" id="titre" required>
+								<label for="categories">Catégories</label>
+								<select name="categories" id="categories" required>
+									<option id="0" value="" disabled selected hidden></option>
+									<option id="1" value="Objets">Objets</option>
+									<option id="2" value="Appartements">Appartements</option>
+									<option id="3" value="Hotels & restaurants">Hotels & restaurants</option>
+								</select>
+								<div class="footer-modal-two">
+									<input id="btn-submit-file" type="submit" value="Valider">
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</aside>
-	<script src="modale.js"></script>
+		</aside>
+		<script src="modale.js"></script>
 	</main>
 	<footer>
 		<nav>

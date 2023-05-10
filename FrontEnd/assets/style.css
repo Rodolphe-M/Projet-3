@@ -331,16 +331,13 @@ margin: auto;
 	color:#B1663C;
 }
 
-.modal-title {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 #title-modal {
 	font-size: 26px;
 	font-weight: 400;
-	margin-bottom: 50px;;
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;;
 }
 
 .modal-footer {
@@ -616,6 +613,10 @@ margin: auto;
 #btn-submit-file:hover {
 	background-color: #1D6154;
 
+}
+
+.icone-edition {
+	margin-right: 5px;
 }
 
 #icone-edition {
