@@ -516,13 +516,18 @@ margin: auto;
 .upload-file {
 	width: 420px;
 	height: fit-content;
-	margin: auto;
+	margin: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: #E8F1F6;
-	padding: 20px;;
+}
+
+.upload-file button {
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .upload-file input {
@@ -533,10 +538,11 @@ margin: auto;
 .upload-file p {
 	height: 12px;
 	color: #444444;
+	margin-bottom: 20px;
 }
 
 #image-preview img {
-	height: 193px;
+	height: fit-content;
 	width: 129px;
 }
 
@@ -581,7 +587,8 @@ margin: auto;
 
 #logo-image {
 	font-size: 46px;
-	margin: 5px;
+	margin: 10px;
+	margin-top: 20px; 
 	color: #CBD6DC;
 }
 
@@ -683,4 +690,21 @@ margin: auto;
 
 #preview-image {
 	position:absolute;
+}
+
+.ajout-valide {
+	background-color: green;
+	color: white;
+	font-size: 16px;
+	margin-top: 20px;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ajout-valide p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

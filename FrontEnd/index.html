@@ -115,13 +115,14 @@
 				</div>
 				<div class="card-modal">
 					<form action="/submit-form" method="POST" id="file-form" enctype="multipart/form-data">
-						<div class="upload-file">
+						<div class="upload-file" id="image-preview">
 							<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
 							<button id="btn-submit-photo">+ Ajouter photo</button>
 							<input type="file" id="input-file" max-size="4000" accept=".png, .jpeg .png" style="display:none" required>
 							<p>jpn, png : 4mo</p>
 						</div>
-						<div id="image-preview">
+						<div class="ajout-valide" style="display:none">
+							<p>Le projet a été ajouté avec succès !</p>
 						</div>
 						<label for="titre">Titre</label>
 						<input type="text" name="titre" id="titre" required>

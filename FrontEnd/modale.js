@@ -30,6 +30,12 @@ const closeModal = function (e) {
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     modal = null
+    document.querySelector('.ajout-valide').style.display = "none";
+    // Obtenez une référence à l'élément du formulaire
+    const form = document.getElementById("file-form");
+
+    // Réinitialisez le formulaire
+    form.reset();
 }
 
 // Empêche la propagation vers le parent pour ne pas fermer la modale en cliquant dessus.

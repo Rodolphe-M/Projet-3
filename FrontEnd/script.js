@@ -105,8 +105,10 @@ function pageAdmin() {
 // Appel de la fonction
 pageAdmin();
 
+let workId;
+
 // Fonction qui génère les projets
-async function genererProjetsModal(works) {
+function genererProjetsModal(works) {
 
     document.querySelector(".modal-gallery").innerHTML = "";
 
@@ -133,37 +135,40 @@ async function genererProjetsModal(works) {
         titleElementModal.innerText = articleModal.title = "éditer";
 
 
- // Suppression projet       
+        // Suppression projet       
         // Ajout de l'écouteur d'événement sur le bouton trash-button
         trashButtonModal.addEventListener("click", function () {
-            const workId = articleModal.id;
+            workId = articleModal.id;
             console.log(workId);
             const token = localStorage.getItem('token');
             console.log(token);
             // Demander confirmation de la suppression
             const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce projet ?");
             if (confirmation) {
-                 fetch(`http://localhost:5678/api/works/${workId}`, {
+                fetch(`http://localhost:5678/api/works/${workId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
                 }).then(response => {
 
-                if (response.status === 204) {
-                    const index = works.findIndex(work => work.id === workId);
-                    works.splice(index, 1);
-                    genererProjetsModal(works);
-                } else if (response.status === 401) {
-                    console.error("Non autorisé !");
-                } else if (response.status === 500) {
-                    console.error("Comportement inattendu !");
-                } else {
-                    console.error("Une erreur s'est produite !");
-                }
-            })
-        }
-    });
+                    if (response.status === 204) {
+                        const index = works.findIndex(work => work.id === workId);
+                        works.splice(index, 1);
+                        genererProjetsModal(works);
+                        document.querySelector(".gallery").innerHTML = "";
+                        genererProjets(works);
+
+                    } else if (response.status === 401) {
+                        console.error("Non autorisé !");
+                    } else if (response.status === 500) {
+                        console.error("Comportement inattendu !");
+                    } else {
+                        console.error("Une erreur s'est produite !");
+                    }
+                })
+            }
+        });
 
         // On rattache la balise article dans la section gallery
         sectionGalleryModal.appendChild(projetElementModal);
@@ -235,25 +240,25 @@ function addWorks() {
         event.preventDefault();
     });
 
-    
- // Affiche de l'image avec l'objet fileReader
+
+    // Affiche de l'image avec l'objet fileReader
     inputFile.addEventListener('change', previewFile);
 
     function previewFile() {
 
         const fileExtensionRegex = /\.(jpe?g|png)$/i;
 
-        if(this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
+        if (this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
             return;
         }
-        
+
         const file = this.files[0];
         const fileReader = new FileReader();
 
         fileReader.readAsDataURL(file);
 
         fileReader.addEventListener('load', (event) =>
-        displayImage(event, file));
+            displayImage(event, file));
 
     }
 
@@ -265,11 +270,11 @@ function addWorks() {
         const imageElement = document.createElement('img');
         imageElement.src = event.target.result;
 
-        const figcaptionElement = document.createElement('figcaption');
-        figcaptionElement.textContent = `Fichier selectionné : ${file.name}`;
-
         figureElement.appendChild(imageElement);
-        figureElement.appendChild(figcaptionElement);
+
+        const divForm = document.getElementById('image-preview');
+        divForm.innerHTML = "";
+        divForm.appendChild(imageElement);
 
         document.body.querySelector('#image-preview').appendChild(figureElement);
 
@@ -288,12 +293,12 @@ function addWorks() {
         formData.append('category', parseInt(categories.options[categories.selectedIndex].id)); // Convertir l'ID en entier
         formData.append('image', image.files[0]);
 
-        console.log(formData);
         // Set le token
         const token = localStorage.getItem('token');
         console.log(token);
+
         // Envoi du projet avec methode POST à l'api
-        const response = fetch("http://localhost:5678/api/works", {
+            fetch("http://localhost:5678/api/works", {
             method: "POST",
             body: formData,
             headers: {
@@ -301,27 +306,29 @@ function addWorks() {
                 "Authorization": `Bearer ${token}`,
             }
         })
-        .then(response => {
-            if (response.status === 201) {
-                alert("Le projet a été ajouté avec succès !");
-                // afficher la fenêtre de succès ici
-            } else if (response.status === 400) {
-                alert("Requête incorrecte !");
-                // afficher la fenêtre d'erreur ici
-            } else if (response.status === 401) {
-                alert("Non autorisé !");
-                // afficher la fenêtre d'erreur ici
-            } else if (response.status === 500) {
-                alert("Comportement inattendu !");
-                // afficher la fenêtre d'erreur ici
-            } else {
-                alert("Une erreur s'est produite !");
-                // afficher la fenêtre d'erreur ici
-            }
-        });
+            .then(response => {
+                if (response.status === 201) {
+                    document.querySelector('.ajout-valide').style.display = "block";
+                    return response.json();
+                } else if (response.status === 401) {
+                    alert("Non autorisé !");
+                } else if (response.status === 500) {
+                    alert("Comportement inattendu !");
+                } else {
+                    alert("Une erreur s'est produite !");
+                }
+            })
+            .then(data => {
+                if (data) {
+                    works.push(data); // Ajoutez le nouveau projet à la liste
+                    document.querySelector(".modal-gallery").innerHTML = "";
+                    genererProjetsModal(works); // Régénère la galerie modale avec les nouvelles données
+                    document.querySelector(".gallery").innerHTML = "";
+                    genererProjets(works); // Régénère la galerie principale avec les nouvelles données
+                }
+            });
     });
 };
-
 
 addWorks();
 
