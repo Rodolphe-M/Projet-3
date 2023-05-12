@@ -3,7 +3,7 @@ let modal  = null
 // Const ouverture modale
 const openModal = function (e) {
     e.preventDefault()
-    //Ciblage élément pour le lien
+    //Ciblage élément pour l'ouverture de la modale
     const target = document.querySelector(e.target.getAttribute('href'))
     // Affichage boite modale / annulation display:none du html et du aria-hidden
     target.style.display = null
@@ -30,8 +30,8 @@ const closeModal = function (e) {
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
     modal = null
+    // selection de l'élément pour ajouter le message en cas de réussite du chargement
     document.querySelector('.ajout-valide').style.display = "none";
-    // Obtenez une référence à l'élément du formulaire
     const form = document.getElementById("file-form");
 
     // Réinitialisez le formulaire
@@ -44,9 +44,8 @@ const stopPropagation = function (e) {
 }
 
 // Selection des class js-modal et ouverture modale au clic
-document.querySelectorAll('.js-modal').forEach(a => {
-    a.addEventListener('click', openModal)  
-})
+document.getElementById('btn-modifier-projets').addEventListener('click', openModal);
+
 
 // Fermeture modale sur clic touche esc/escape
 window.addEventListener('keydown', function (e) {

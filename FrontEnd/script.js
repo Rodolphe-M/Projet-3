@@ -298,7 +298,7 @@ function addWorks() {
         console.log(token);
 
         // Envoi du projet avec methode POST à l'api
-            fetch("http://localhost:5678/api/works", {
+        fetch("http://localhost:5678/api/works", {
             method: "POST",
             body: formData,
             headers: {

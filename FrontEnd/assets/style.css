@@ -671,6 +671,7 @@ margin: auto;
 #btn-modifier-projets {
 	margin-left: 20px;
 	padding-bottom: 5px;
+	text-decoration: none;
 }
 
 .js-modal {
