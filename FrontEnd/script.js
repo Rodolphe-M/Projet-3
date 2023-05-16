@@ -1,6 +1,6 @@
 // Récupération des travaux depuis l'API'
 const reponseWorks = await fetch("http://localhost:5678/api/works");
-const works = await reponseWorks.json();
+let works = await reponseWorks.json();
 
 // Fonction qui génère les projets
 function genererProjets(works) {
@@ -108,7 +108,7 @@ pageAdmin();
 let workId;
 
 // Fonction qui génère les projets
-function genererProjetsModal(works) {
+async function genererProjetsModal(works) {
 
     document.querySelector(".modal-gallery").innerHTML = "";
 
@@ -132,7 +132,7 @@ function genererProjetsModal(works) {
         trashButtonModal.id = "btn-delete";
         //Modification <p>
         const titleElementModal = document.createElement("p");
-        titleElementModal.innerText = articleModal.title = "éditer";
+        titleElementModal.innerText = "éditer";
 
 
         // Suppression projet       
@@ -278,14 +278,19 @@ function addWorks() {
 
         document.body.querySelector('#image-preview').appendChild(figureElement);
 
+        const fileReaderDiv = document.querySelector('.file-reader');
+        fileReaderDiv.style.display = 'none';
+
 
     }
 
 
     // Au clic sur le bouton Envoyer soumet le formulaire
-    btnSubmitFile.addEventListener('click', (event) => {
-        event.preventDefault();
-        form.querySelector('#input-file');
+        btnSubmitFile.addEventListener('click', (event) => {
+            event.preventDefault();
+            form.querySelector('#input-file');
+            console.log(btnSubmitFile);
+        
 
         // Set l'objet formData
         const formData = new FormData();
@@ -310,6 +315,7 @@ function addWorks() {
                 if (response.status === 201) {
                     document.querySelector('.ajout-valide').style.display = "block";
                     return response.json();
+
                 } else if (response.status === 401) {
                     alert("Non autorisé !");
                 } else if (response.status === 500) {
@@ -327,7 +333,9 @@ function addWorks() {
                     genererProjets(works); // Régénère la galerie principale avec les nouvelles données
                 }
             });
-    });
+       
+});
+
 };
 
 addWorks();

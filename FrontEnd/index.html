@@ -115,11 +115,16 @@
 						</div>
 						<div class="card-modal">
 							<form action="/submit-form" method="POST" id="file-form" enctype="multipart/form-data">
-								<div class="upload-file" id="image-preview">
-									<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
-									<button id="btn-submit-photo">+ Ajouter photo</button>
-									<input type="file" id="input-file" accept=".png, .jpg, .jpeg" style="display:none" required>
-									<p>jpn, png : 4mo</p>
+								<div class="upload-file">
+									<div id="image-preview">
+									</div>
+									<div class="file-reader">
+										<i id="logo-image" class="fa-sharp fa-regular fa-image"></i><br>
+										<button id="btn-submit-photo">+ Ajouter photo</button>
+										<input type="file" id="input-file" accept=".png, .jpg, .jpeg"
+											style="display:none" required>
+										<p>jpn, png : 4mo</p>
+									</div>
 								</div>
 								<div class="ajout-valide" style="display:none">
 									<p>Le projet a été ajouté avec succès !</p>
@@ -128,7 +133,7 @@
 								<input type="text" name="titre" id="titre" required>
 								<label for="categories">Catégories</label>
 								<select name="categories" id="categories" required>
-									<option id="0" value="" disabled selected hidden></option>
+									<option id="0" value="" label="&nbsp;" disabled selected hidden></option>
 									<option id="1" value="Objets">Objets</option>
 									<option id="2" value="Appartements">Appartements</option>
 									<option id="3" value="Hotels & restaurants">Hotels & restaurants</option>

@@ -1,4 +1,4 @@
-let modal  = null
+let modal = null
 
 // Const ouverture modale
 const openModal = function (e) {
@@ -36,6 +36,14 @@ const closeModal = function (e) {
 
     // Réinitialisez le formulaire
     form.reset();
+
+    const divForm = document.getElementById('image-preview');
+    divForm.innerHTML = ""; // Supprime le contenu de la div "image-preview"
+
+    const fileReaderDiv = document.querySelector('.file-reader');
+        fileReaderDiv.style.display = 'flex';
+
+
 }
 
 // Empêche la propagation vers le parent pour ne pas fermer la modale en cliquant dessus.

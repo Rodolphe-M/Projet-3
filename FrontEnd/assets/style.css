@@ -521,18 +521,29 @@ margin: auto;
 	background-color: #E8F1F6;
 }
 
-.upload-file button {
+.file-reader {
+	width: 420px;
+	height: fit-content;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #E8F1F6;
+}
+
+.file-reader button {
 	display:flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.upload-file input {
+.file-reader input {
 	height: 36px;
 	margin: 15px 5px 10px 5px;
 }
 
-.upload-file p {
+.file-reader p {
 	height: 12px;
 	color: #444444;
 	margin-bottom: 20px;
